@@ -2,7 +2,7 @@ Summary:	The Festival speech sythesis system
 Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.2
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
@@ -16,6 +16,7 @@ Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.g
 Source4:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_en1.tar.gz
 # Source4-md5:	66e3bc07751d7e31826185649c5ada5a
 Patch0:		%{name}-config.patch
+Patch1:		%{name}-asterisk.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
 BuildRequires:	speech_tools-devel
@@ -80,7 +81,7 @@ Pliki potrzebne do u¿ycia g³osu en1 z pakietu mbrola.
 %prep
 %setup -q -n %{name} -b1 -b2 -b3 -b4
 %patch0 -p1
-
+%patch1 -p1
 %build
 cp -f /usr/share/automake/config.* .
 %configure2_13
