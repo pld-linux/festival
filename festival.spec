@@ -84,6 +84,7 @@ Pliki potrzebne do u¿ycia g³osu en1 z pakietu mbrola.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+
 %build
 cp -f /usr/share/automake/config.* .
 %{__perl} -pi -e 's,^EST=.*,EST=%{_libdir}/speech_tools,' config/config.in
@@ -91,7 +92,7 @@ cp -f /usr/share/automake/config.* .
 %{__make} \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
-	ECHO_N=/bin/printf \
+	ECHO_N='printf "%%s"' \
 	OPTIMISE_CCFLAGS="%{rpmcflags}" \
 	OPTIMISE_CXXFLAGS="%{rpmcflags}" \
 	OPTIMISE_LINK="%{rpmldflags}" \
