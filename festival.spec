@@ -1,12 +1,14 @@
 Summary:	The Festival speech sythesis system
 Summary(pl):	System syntezy mowy Festival
 Name:		festival
-Version:	1.4.2
-Release:	5
+Version:	1.4.4
+%define		_snap	20030803
+Release:	0.%{_snap}.1
 License:	BSD-like (except for festival.el, which is on GPL)
 Group:		Applications/Sound
-Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
-# Source0-md5:	4a46160fdda29188e0c4ee51b41c5695
+#Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
+Source0:	http://www.festvox.org/packed/festival/latest/festival-%{version}-current%{_snap}.tar.gz
+# Source0-md5:	ffaa7533b3f50791aabfbf1cee09ca85
 Source1:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us1.tar.gz
 # Source1-md5:	d0c3e727003e715a65daf01003101813
 Source2:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us2.tar.gz
