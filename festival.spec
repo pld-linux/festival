@@ -2,7 +2,7 @@ Summary:	The Festival speech sythesis system
 Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
@@ -44,6 +44,7 @@ Festival - ¶rodowisko rozwojowe.
 Summary:	Festival's files for voices us1,us2,us3
 Summary(pl):	Pliki Festival do g³osów us1,us2,us3
 Group:		Applications/Sound
+Requires:	mbrola
 
 %description voices-english-mbrola-us
 Files needed to use us1,us2,us3 voices from mbrola packages.
