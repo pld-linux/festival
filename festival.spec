@@ -19,7 +19,6 @@ Source4:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_en1.tar.g
 # Source4-md5:	66e3bc07751d7e31826185649c5ada5a
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-asterisk.patch
-Patch2:		%{name}-gcc33.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
 BuildRequires:	speech_tools-devel
@@ -85,7 +84,6 @@ Pliki potrzebne do u¿ycia g³osu en1 z pakietu mbrola.
 %setup -q -n %{name} -b1 -b2 -b3 -b4
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.* .
