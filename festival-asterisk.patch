@@ -20,7 +20,7 @@ diff -u -r festival-1.4.2/lib/tts.scm festival-1.4.2-asterisk/lib/tts.scm
 diff -u -r festival-1.4.2/src/arch/festival/wave.cc festival-1.4.2-asterisk/src/arch/festival/wave.cc
 --- festival-1.4.2/src/arch/festival/wave.cc	Mon Jun  4 07:40:10 2001
 +++ festival-1.4.2-asterisk/src/arch/festival/wave.cc	Tue Jan  7 08:53:09 2003
-@@ -377,6 +377,38 @@
+@@ -381,6 +381,38 @@
  	type = "nist";
      else
  	type = get_c_string(ltype);
@@ -57,18 +57,18 @@ diff -u -r festival-1.4.2/src/arch/festival/wave.cc festival-1.4.2-asterisk/src/
 +    w->resample(8000);
 +    w->rescale(5);
      w->save(tmpfile,type);
-     write(ft_server_socket,"WV\n",3);
-     socket_send_file(ft_server_socket,tmpfile);
-@@ -454,6 +486,13 @@
+ #ifdef WIN32
+     send(ft_server_socket,"WV\n",3,0);
+@@ -465,6 +497,13 @@
   "(utt.send.wave.client UTT)\n\
    Sends wave in UTT to client.  If not in server mode gives an error\n\
    Note the client must be expecting to receive the waveform.");
 +
 +    init_subr_1("utt.send.wave.asterisk",utt_send_wave_asterisk,
-+ "(utt.send.wave.asterisk UTT)\n\
-+  Sends wave in UTT to client.  If not in server mode gives an error\n\
-+  Note the client must be expecting to receive the waveform. The waveform
-+  is rescaled and resampled according to what asterisk needs");
++ "(utt.send.wave.asterisk UTT)\n"
++  "Sends wave in UTT to client.  If not in server mode gives an error\n"
++  "Note the client must be expecting to receive the waveform. The waveform"
++  "is rescaled and resampled according to what asterisk needs");
 +
      init_subr_1("send_sexpr_to_client", send_sexpr_to_client,
   "(send_sexpr_to_client SEXPR)\n\
