@@ -2,7 +2,7 @@ Summary:	The Festival speech sythesis system
 Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
@@ -14,6 +14,12 @@ Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	speech_tools-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%ifarch alpha
+%define		fostype	alpha_Linux
+%else
+%define		fostype	unknown_Linux
+%endif
 
 %description
 Festival offers a general framework for building speech synthesis
@@ -112,8 +118,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/lib/voices
 %dir %{_datadir}/%{name}/lib/voices/english
 %dir %{_datadir}/%{name}/lib/etc
-%dir %{_datadir}/%{name}/lib/etc/unknown_Linux
-%attr(755,root,root) %{_datadir}/%{name}/lib/etc/unknown_Linux/audsp
+%dir %{_datadir}/%{name}/lib/etc/%{fostype}
+%attr(755,root,root) %{_datadir}/%{name}/lib/etc/%{fostype}/audsp
 %{_datadir}/%{name}/lib/etc/email_filter
 %{_datadir}/%{name}/lib/*.scm
 %{_datadir}/%{name}/lib/Sable.v0_2.dtd
