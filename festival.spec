@@ -1,3 +1,4 @@
+# TODO: kill ELF binary from %{_datadir}, see files
 Summary:	The Festival speech sythesis system
 Summary(pl):	System syntezy mowy Festival
 Name:		festival
@@ -132,6 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/lib/voices/english
 %dir %{_datadir}/%{name}/lib/etc
 %dir %{_datadir}/%{name}/lib/etc/%{fostype}
+# XXX: ELF binary, fix it!
 %attr(755,root,root) %{_datadir}/%{name}/lib/etc/%{fostype}/audsp
 %{_datadir}/%{name}/lib/etc/email_filter
 %{_datadir}/%{name}/lib/*.scm
@@ -146,7 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/%{name}
-%{_libdir}/*
+%{_libdir}/libFestival.a
 %{_datadir}/%{name}/config
 
 %files voices-english-mbrola-us
