@@ -51,7 +51,7 @@ Festival - ¶rodowisko rozwojowe.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/lib/{voices,dicts},%{_libdir},%{_includedir}/%{name},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/lib/{voices/english,dicts},%{_libdir},%{_includedir}/%{name},%{_mandir}/man1}
 
 # bin
 install bin/festival_server* bin/text2wave $RPM_BUILD_ROOT%{_bindir}
@@ -76,7 +76,21 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/lib
+%dir %{_datadir}/%{name}/lib
+%dir %{_datadir}/%{name}/lib/dicts
+%dir %{_datadir}/%{name}/lib/voices
+%dir %{_datadir}/%{name}/lib/voices/english
+%dir %{_datadir}/%{name}/lib/etc
+%dir %{_datadir}/%{name}/lib/etc/unknown_Linux
+%attr(755,root,root) %{_datadir}/%{name}/lib/etc/unknown_Linux/audsp
+%{_datadir}/%{name}/lib/etc/email_filter
+%{_datadir}/%{name}/lib/*.scm
+%{_datadir}/%{name}/lib/Sable.v0_2.dtd
+%{_datadir}/%{name}/lib/festival.el
+%{_datadir}/%{name}/lib/sable-latin.ent
+%{_datadir}/%{name}/lib/scfg_wsj_wp20.gram
+%{_datadir}/%{name}/lib/sec.*.ngrambin
+%{_datadir}/%{name}/lib/speech.properties
 %{_datadir}/%{name}/examples
 
 %files devel
