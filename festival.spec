@@ -2,7 +2,7 @@ Summary:	The Festival speech sythesis system
 Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
@@ -11,7 +11,7 @@ Source2:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us2.tar.g
 Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.gz
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
-BuildRequires:	speech_tools-static
+BuildRequires:	speech_tools-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,9 +41,9 @@ Festival developement enviroment.
 Festival - ¶rodowisko rozwojowe.
 
 %package voices-english-mbrola-us
-Summary:    Festival's files for voices us1,us2,us3
-Summary(pl):    Pliki Festival do g³osów us1,us2,us3
-Group:      Applications/Sound
+Summary:	Festival's files for voices us1,us2,us3
+Summary(pl):	Pliki Festival do g³osów us1,us2,us3
+Group:		Applications/Sound
 
 %description voices-english-mbrola-us
 Files needed to use us1,us2,us3 voices from mbrola packages.
@@ -60,8 +60,11 @@ Pliki potrzebne do u¿ycia g³osu us1,us2,us3 z pakietu mbrola.
 %{__make} \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
-	CFLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmldflags}"
+	OPTIMISE_CCFLAGS="%{rpmcflags}" \
+	OPTIMISE_CXXFLAGS="%{rpmcflags}" \
+	OPTIMISE_LINK="%{rpmldflags}" \
+	REQUIRED_LIBDEPS=
+# REQUIRED_LIBDPES is workaround not to need static speech_tools libraries
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -107,14 +110,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/lib/speech.properties
 %{_datadir}/%{name}/examples
 
-%files voices-english-mbrola-us
-%defattr(644,root,root,755)
-%dir %{_datadir}/%{name}/lib/voices/english/us1_mbrola
-%dir %{_datadir}/%{name}/lib/voices/english/us2_mbrola
-%dir %{_datadir}/%{name}/lib/voices/english/us3_mbrola
-
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/%{name}
 %{_libdir}/*
 %{_datadir}/%{name}/config
+
+%files voices-english-mbrola-us
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/lib/voices/english/us1_mbrola
+%{_datadir}/%{name}/lib/voices/english/us2_mbrola
+%{_datadir}/%{name}/lib/voices/english/us3_mbrola
