@@ -12,6 +12,7 @@ Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.g
 Source4:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_en1.tar.gz
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
+BuildRequires:	automake
 BuildRequires:	speech_tools-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
