@@ -84,6 +84,7 @@ Pliki potrzebne do u¿ycia g³osu en1 z pakietu mbrola.
 %patch1 -p1
 %build
 cp -f /usr/share/automake/config.* .
+%{__perl} -pi -e 's,^EST=.*,EST=%{_libdir}/speech_tools,' config/config.in
 %configure2_13
 %{__make} \
 	CC="%{__cc}" \
