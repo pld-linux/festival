@@ -22,12 +22,16 @@ diff -ruN festival./config/config.in festival/config/config.in
 diff -ruN festival./config/modules/editline.mak festival/config/modules/editline.mak
 --- festival./config/modules/editline.mak	Wed Apr  4 13:55:20 2001
 +++ festival/config/modules/editline.mak	Wed Jul 10 13:12:51 2002
-@@ -43,4 +43,4 @@
- MOD_DESC_EDITLINE=Use editline for command line editor and history
+@@ -43,7 +43,7 @@
+ MOD_DESC_EDITLINE=Use editline for command line editing and history
  
  IO_DEFINES   += -DSUPPORT_EDITLINE $(MODULE_EDITLINE_OPTIONS:%=-DEDITLINE_%)
--MODULE_LIBS  += -ltermcap
+-MODULE_LIBS  += $(TERMCAPLIB)
 +MODULE_LIBS  += -lncurses
+ 
+ ifeq ($(DIRNAME),siod)
+     CSRCS := $(CSRCS) el_complete.c editline.c el_sys_unix.c
+
 diff -ruN festival./config/project.mak festival/config/project.mak
 --- festival./config/project.mak	Fri Jul 20 13:21:54 2001
 +++ festival/config/project.mak	Wed Jul 10 13:12:51 2002
@@ -139,8 +143,8 @@ diff -ruN festival./lib/voices.scm festival/lib/voices.scm
  ;; The path to search for voices is created from the load-path with
  ;; an extra list of directories appended.
  
--(defvar system-voice-path '("/projects/festival/lib/voices-1.4/")
-+(defvar system-voice-path '("/usr/share/festival/lib/voices-1.4/")
+-(defvar system-voice-path '( )
++(defvar system-voice-path '("/usr/share/festival/lib/voices-1.4/" )
    "system-voice-path
     Additional directory not near the load path where voices can be
     found, this can be redefined in lib/sitevars.scm if desired.")
