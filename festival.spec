@@ -6,10 +6,15 @@ Release:	4
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
+# Source0-md5:	4a46160fdda29188e0c4ee51b41c5695
 Source1:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us1.tar.gz
+# Source1-md5:	d0c3e727003e715a65daf01003101813
 Source2:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us2.tar.gz
+# Source2-md5:	fbcc8baacbff3aa2aaaf5a93701bb5e0
 Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.gz
+# Source3-md5:	06dbfe2edaab6ffa31deeaf522e0c33e
 Source4:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_en1.tar.gz
+# Source4-md5:	66e3bc07751d7e31826185649c5ada5a
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
