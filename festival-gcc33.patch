@@ -5,7 +5,133 @@
   "(utt.send.wave.asterisk UTT)\n\
    Sends wave in UTT to client.  If not in server mode gives an error\n\
 -  Note the client must be expecting to receive the waveform. The waveform
-+  Note the client must be expecting to receive the waveform. The waveform\
++  Note the client must be expecting to receive the waveform. The waveform\n\
    is rescaled and resampled according to what asterisk needs");
  
      init_subr_1("send_sexpr_to_client", send_sexpr_to_client,
+--- festival/src/modules/base/phrasify.cc.orig	Wed Apr  4 13:55:20 2001
++++ festival/src/modules/base/phrasify.cc	Mon Jan 26 12:01:19 2004
+@@ -218,7 +218,7 @@
+ 	    EST_Val npbreak = wagon_predict(w,phrase_type_tree);
+ 	    w->set("pbreak",npbreak.string());  // may reset to BB
+ 	}
+-	pbreak = w->f("pbreak");
++	pbreak = w->f("pbreak").String();
+ 	if (pbreak == "B")
+ 	    w->set("blevel",3);
+ 	else if (pbreak == "mB")
+--- festival/src/modules/base/word.cc.orig	Wed Apr  4 13:55:20 2001
++++ festival/src/modules/base/word.cc	Mon Jan 26 12:06:53 2004
+@@ -64,10 +64,10 @@
+     for (w=u->relation("Word")->first(); w != 0; w = next(w))
+     {
+ 	lpos = NIL;
+-	pos = ffeature(w,"hg_pos");
++	pos = ffeature(w,"hg_pos").String();
+                         // explicit homograph pos disambiguation
+ 	if (pos == "0")
+-	    pos = ffeature(w,"pos");
++	    pos = ffeature(w,"pos").String();
+ 	if (pos != "0")
+ 	    lpos = rintern(pos);
+ 
+@@ -100,8 +100,8 @@
+     //  from which a list can be read.
+     EST_String p;
+ 
+-    if (((p = ffeature(w,"phonemes")) != "0") ||
+-	((p = ffeature(w,"R:Token.parent.phonemes")) != "0"))
++    if (((p = ffeature(w,"phonemes").String()) != "0") ||
++	((p = ffeature(w,"R:Token.parent.phonemes").String()) != "0"))
+     {
+ 	LISP phones = read_from_lstring(strintern(p));
+ 
+--- festival/src/modules/Intonation/int_tree.cc.orig	Wed Apr  4 13:55:20 2001
++++ festival/src/modules/Intonation/int_tree.cc	Mon Jan 26 12:15:59 2004
+@@ -87,11 +87,11 @@
+     for (s=u->relation("Syllable")->first(); s != 0; s=next(s))
+     {
+ 	if ((paccent = accent_specified(s)) == "0") // check if pre-specified
+-	    paccent = wagon_predict(s,accent_tree);
++	    paccent = wagon_predict(s,accent_tree).String();
+ 	if (paccent != "NONE")
+ 	    add_IntEvent(u,s,paccent);
+ 	if ((ptone = tone_specified(s)) == "0")
+-	    ptone = wagon_predict(s,endtone_tree);
++	    ptone = wagon_predict(s,endtone_tree).String();
+ 	if (ptone != "NONE")
+ 	    add_IntEvent(u,s,ptone);
+     }
+@@ -107,11 +107,11 @@
+     EST_Item *token = parent(word,"Token");
+     EST_String paccent("0");
+     if (token)
+-	paccent = ffeature(token,"accent");
++	paccent = ffeature(token,"accent").String();
+ 	
+     if (paccent == "0")
+     {
+-	paccent = ffeature(word,"accent");
++	paccent = ffeature(word,"accent").String();
+ 	if (paccent == "0")
+ 	    return paccent;
+     }
+@@ -139,11 +139,11 @@
+     EST_Item *token = parent(word,"Token");
+     EST_String ptone("0");
+     if (token)
+-	ptone = ffeature(token,"tone");
++	ptone = ffeature(token,"tone").String();
+ 
+     if (ptone == "0")
+     {
+-	ptone = ffeature(word,"tone");
++	ptone = ffeature(word,"tone").String();
+ 	if (ptone == "0")
+ 	    return ptone;
+     }
+--- festival/src/modules/Text/token.cc.orig	Wed Apr  4 13:55:20 2001
++++ festival/src/modules/Text/token.cc	Mon Jan 26 12:36:08 2004
+@@ -230,7 +230,7 @@
+ 	else
+ 	    return cons(strintern(tok),NIL);
+     }
+-    else if ((token_pos = ffeature(token,"token_pos")) == "ordinal")
++    else if ((token_pos = ffeature(token,"token_pos").String()) == "ordinal")
+ 	return say_num_as_ordinal(tok);
+     else if (token_pos == "year")
+ 	return say_num_as_year(tok);
+--- festival/src/modules/Text/xxml.cc.orig	Wed Apr  4 13:55:20 2001
++++ festival/src/modules/Text/xxml.cc	Mon Jan 26 12:37:28 2004
+@@ -93,7 +93,7 @@
+ 	    cerr << "xxml parse error: unexpected end of file \n";
+ 	    festival_error();
+ 	}
+-	line = ts.get_upto_eoln();
++	line = ts.get_upto_eoln().String();
+ 	type = line.at(0,1);
+ 	remainder = line.after(0);
+ 	if (type == "-")
+@@ -159,7 +159,7 @@
+     EST_Token t;
+ 
+     ts.open_string(remainder);
+-    name = ts.get();
++    name = ts.get().String();
+     if ((t=ts.get()) == "IMPLIED")
+ 	att = cons(rintern(name),cons(NIL,NIL));
+     else if (t == "TOKEN")
+--- festival/src/modules/UniSyn_diphone/us_diphone_index.cc.orig	Fri Apr  6 13:05:39 2001
++++ festival/src/modules/UniSyn_diphone/us_diphone_index.cc	Mon Jan 26 12:48:50 2004
+@@ -106,9 +106,9 @@
+ 
+     if (!item)
+ 	return "";
+-    else if ((d1 = item->f(dname+"_"+dir,def)) != "0")
++    else if ((d1 = item->f(dname+"_"+dir,def).String()) != "0")
+ 	return d1;
+-    else if ((d1 = item->f(dname,def)) != "0")
++    else if ((d1 = item->f(dname,def).String()) != "0")
+ 	return d1;
+     else
+ 	return item->f("name","0").string();
