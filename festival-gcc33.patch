@@ -1,0 +1,11 @@
+--- festival/src/arch/festival/wave.cc~	2004-01-25 21:12:09.060063117 +0100
++++ festival/src/arch/festival/wave.cc	2004-01-25 21:16:50.012852793 +0100
+@@ -490,7 +490,7 @@
+     init_subr_1("utt.send.wave.asterisk",utt_send_wave_asterisk,
+  "(utt.send.wave.asterisk UTT)\n\
+   Sends wave in UTT to client.  If not in server mode gives an error\n\
+-  Note the client must be expecting to receive the waveform. The waveform
++  Note the client must be expecting to receive the waveform. The waveform\
+   is rescaled and resampled according to what asterisk needs");
+ 
+     init_subr_1("send_sexpr_to_client", send_sexpr_to_client,
