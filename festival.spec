@@ -6,6 +6,9 @@ Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
+Source1:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us1.tar.gz
+Source2:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us2.tar.gz
+Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.gz
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	speech_tools-static
@@ -37,8 +40,19 @@ Festival developement enviroment.
 %description devel -l pl
 Festival - ¶rodowisko rozwojowe.
 
+%package voices-english-mbrola-us
+Summary:    Festival's files for voices us1,us2,us3
+Summary(pl):    Pliki Festival do g³osów us1,us2,us3
+Group:      Applications/Sound
+
+%description voices-english-mbrola-us
+Files needed to use us1,us2,us3 voices from mbrola packages.
+
+%description voices-english-mbrola-us -l pl
+Pliki potrzebne do u¿ycia g³osu us1,us2,us3 z pakietu mbrola.
+
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name} -b1 -b2 -b3
 %patch0 -p1
 
 %build
@@ -92,6 +106,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/lib/sec.*.ngrambin
 %{_datadir}/%{name}/lib/speech.properties
 %{_datadir}/%{name}/examples
+
+%files voices-english-mbrola-us
+%defattr(644,root,root,755)
+%dir %{_datadir}/%{name}/lib/voices/english/us1_mbrola
+%dir %{_datadir}/%{name}/lib/voices/english/us2_mbrola
+%dir %{_datadir}/%{name}/lib/voices/english/us3_mbrola
 
 %files devel
 %defattr(644,root,root,755)
