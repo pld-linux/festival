@@ -3,7 +3,7 @@ Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.2
 Release:	5
-License:	GPL
+License:	BSD-like (except for festival.el, which is on GPL)
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
 # Source0-md5:	4a46160fdda29188e0c4ee51b41c5695
