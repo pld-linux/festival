@@ -9,6 +9,7 @@ Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version
 Source1:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us1.tar.gz
 Source2:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us2.tar.gz
 Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.gz
+Source4:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_en1.tar.gz
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	speech_tools-devel
@@ -41,19 +42,31 @@ Festival developement enviroment.
 Festival - 鈔odowisko rozwojowe.
 
 %package voices-english-mbrola-us
-Summary:	Festival's files for voices us1,us2,us3
-Summary(pl):	Pliki Festival do g這s闚 us1,us2,us3
+Summary:	Festival's files for voices us1, us2, us3
+Summary(pl):	Pliki Festival do g這s闚 us1, us2, us3
 Group:		Applications/Sound
 Requires:	mbrola
 
 %description voices-english-mbrola-us
-Files needed to use us1,us2,us3 voices from mbrola packages.
+Files needed to use us1, us2, us3 voices from mbrola packages.
 
 %description voices-english-mbrola-us -l pl
-Pliki potrzebne do u篡cia g這su us1,us2,us3 z pakietu mbrola.
+Pliki potrzebne do u篡cia g這s闚 us1, us2, us3 z pakietu mbrola.
+
+%package voices-english-mbrola-en
+Summary:	Festival's files for voice en1
+Summary(pl):	Pliki Festival do g這su en1
+Group:		Applications/Sound
+Requires:	mbrola
+
+%description voices-english-mbrola-en
+Files needed to use en1 voice from mbrola packages.
+
+%description voices-english-mbrola-en -l pl
+Pliki potrzebne do u篡cia g這su en1 z pakietu mbrola.
 
 %prep
-%setup -q -n %{name} -b1 -b2 -b3
+%setup -q -n %{name} -b1 -b2 -b3 -b4
 %patch0 -p1
 
 %build
@@ -122,3 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/lib/voices/english/us1_mbrola
 %{_datadir}/%{name}/lib/voices/english/us2_mbrola
 %{_datadir}/%{name}/lib/voices/english/us3_mbrola
+
+%files voices-english-mbrola-en
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/lib/voices/english/en1_mbrola
