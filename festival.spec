@@ -53,7 +53,7 @@ Festival - ¶rodowisko rozwojowe.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_libdir},%{_includedir}/%{name},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/voices,%{_libdir},%{_includedir}/%{name},%{_mandir}/man1}
 
 # bin
 install bin/festival_server* bin/text2wave $RPM_BUILD_ROOT%{_bindir}
