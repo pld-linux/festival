@@ -76,6 +76,7 @@ Pliki potrzebne do u¿ycia g³osu en1 z pakietu mbrola.
 %patch0 -p1
 
 %build
+cp -f /usr/share/automake/config.* .
 %configure2_13
 %{__make} \
 	CC="%{__cc}" \
