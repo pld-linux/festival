@@ -1,12 +1,11 @@
 Summary:	The Festival speech sythesis system
-Summary(pl):	System syntezy g³osu Festival
+Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.2
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
-#Source1:	ftp://voruta.ek.univ.gda.pl:21/emacspeak/festival_polish_voice.tgz
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	speech_tools-static
@@ -50,10 +49,9 @@ Festival - ¶rodowisko rozwojowe.
 	CFLAGS="%{rpmcflags}" \
 	LDFLAGS="%{rpmldflags}"
 
-
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/voices,%{_libdir},%{_includedir}/%{name},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/lib/{voices,dicts},%{_libdir},%{_includedir}/%{name},%{_mandir}/man1}
 
 # bin
 install bin/festival_server* bin/text2wave $RPM_BUILD_ROOT%{_bindir}
