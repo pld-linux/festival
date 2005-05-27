@@ -4,7 +4,7 @@ Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.4
 %define		_snap	20030803
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 License:	BSD-like (except for festival.el, which is on GPL)
 Group:		Applications/Sound
 #Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
@@ -151,6 +151,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libFestival.a
 %{_datadir}/%{name}/config
 
+# no mbrola on amd64
+%ifarch %{ix86} ppc alpha sparc
 %files voices-english-mbrola-us
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/lib/voices/english/us1_mbrola
@@ -160,3 +162,4 @@ rm -rf $RPM_BUILD_ROOT
 %files voices-english-mbrola-en
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/lib/voices/english/en1_mbrola
+%endif
