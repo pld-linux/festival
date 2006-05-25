@@ -4,7 +4,7 @@ Summary(pl):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.4
 %define		_snap	20030803
-Release:	0.%{_snap}.3
+Release:	0.%{_snap}.4
 License:	BSD-like (except for festival.el, which is on GPL)
 Group:		Applications/Sound
 #Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
@@ -151,6 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/%{name}
 %{_libdir}/libFestival.a
+%dir %{_datadir}/%{name}
 %{_datadir}/%{name}/config
 
 # no mbrola on amd64
