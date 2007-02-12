@@ -1,6 +1,6 @@
 # TODO: kill ELF binary from %{_datadir}, see files
 Summary:	The Festival speech sythesis system
-Summary(pl.UTF-8):   System syntezy mowy Festival
+Summary(pl.UTF-8):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.4
 %define		_snap	20030803
@@ -49,7 +49,7 @@ najbardziej zaawansowany.
 
 %package devel
 Summary:	Festival developement enviroment
-Summary(pl.UTF-8):   Festival - środowidko rozwojowe
+Summary(pl.UTF-8):	Festival - środowidko rozwojowe
 Group:		Applications/Sound
 
 %description devel
@@ -60,7 +60,7 @@ Festival - środowisko rozwojowe.
 
 %package voices-english-mbrola-us
 Summary:	Festival's files for voices us1, us2, us3
-Summary(pl.UTF-8):   Pliki Festival do głosów us1, us2, us3
+Summary(pl.UTF-8):	Pliki Festival do głosów us1, us2, us3
 Group:		Applications/Sound
 Requires:	mbrola
 
@@ -72,7 +72,7 @@ Pliki potrzebne do użycia głosów us1, us2, us3 z pakietu mbrola.
 
 %package voices-english-mbrola-en
 Summary:	Festival's files for voice en1
-Summary(pl.UTF-8):   Pliki Festival do głosu en1
+Summary(pl.UTF-8):	Pliki Festival do głosu en1
 Group:		Applications/Sound
 Requires:	mbrola
 
