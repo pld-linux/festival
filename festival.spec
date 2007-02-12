@@ -1,6 +1,6 @@
 # TODO: kill ELF binary from %{_datadir}, see files
 Summary:	The Festival speech sythesis system
-Summary(pl):	System syntezy mowy Festival
+Summary(pl.UTF-8):   System syntezy mowy Festival
 Name:		festival
 Version:	1.4.4
 %define		_snap	20030803
@@ -40,47 +40,47 @@ though a Scheme command interpreter, as a C++ library, from Java, and
 an Emacs interface. Festival is multi-lingual, though English is the
 most advanced.
 
-%description -l pl
-Festival jest platform± przeznaczon± do budowania systemów syntezy
-mowy oraz do ³atwego testowania ró¿nych modu³ów sk³adaj±cych siê na
-syntezator mowy. Mo¿na te¿ u¿ywaæ programu jako maszynki czytaj±cej
-pliki tekstowe. Festival jest wielojêzyczny, lecz jêzyk angielski jest
+%description -l pl.UTF-8
+Festival jest platformÄ… przeznaczonÄ… do budowania systemÃ³w syntezy
+mowy oraz do Å‚atwego testowania rÃ³Å¼nych moduÅ‚Ã³w skÅ‚adajÄ…cych siÄ™ na
+syntezator mowy. MoÅ¼na teÅ¼ uÅ¼ywaÄ‡ programu jako maszynki czytajÄ…cej
+pliki tekstowe. Festival jest wielojÄ™zyczny, lecz jÄ™zyk angielski jest
 najbardziej zaawansowany.
 
 %package devel
 Summary:	Festival developement enviroment
-Summary(pl):	Festival - ¶rodowidko rozwojowe
+Summary(pl.UTF-8):   Festival - Å›rodowidko rozwojowe
 Group:		Applications/Sound
 
 %description devel
 Festival developement enviroment.
 
-%description devel -l pl
-Festival - ¶rodowisko rozwojowe.
+%description devel -l pl.UTF-8
+Festival - Å›rodowisko rozwojowe.
 
 %package voices-english-mbrola-us
 Summary:	Festival's files for voices us1, us2, us3
-Summary(pl):	Pliki Festival do g³osów us1, us2, us3
+Summary(pl.UTF-8):   Pliki Festival do gÅ‚osÃ³w us1, us2, us3
 Group:		Applications/Sound
 Requires:	mbrola
 
 %description voices-english-mbrola-us
 Files needed to use us1, us2, us3 voices from mbrola packages.
 
-%description voices-english-mbrola-us -l pl
-Pliki potrzebne do u¿ycia g³osów us1, us2, us3 z pakietu mbrola.
+%description voices-english-mbrola-us -l pl.UTF-8
+Pliki potrzebne do uÅ¼ycia gÅ‚osÃ³w us1, us2, us3 z pakietu mbrola.
 
 %package voices-english-mbrola-en
 Summary:	Festival's files for voice en1
-Summary(pl):	Pliki Festival do g³osu en1
+Summary(pl.UTF-8):   Pliki Festival do gÅ‚osu en1
 Group:		Applications/Sound
 Requires:	mbrola
 
 %description voices-english-mbrola-en
 Files needed to use en1 voice from mbrola packages.
 
-%description voices-english-mbrola-en -l pl
-Pliki potrzebne do u¿ycia g³osu en1 z pakietu mbrola.
+%description voices-english-mbrola-en -l pl.UTF-8
+Pliki potrzebne do uÅ¼ycia gÅ‚osu en1 z pakietu mbrola.
 
 %prep
 %setup -q -n %{name} -b1 -b2 -b3 -b4
