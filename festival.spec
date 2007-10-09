@@ -48,12 +48,12 @@ pliki tekstowe. Festival jest wielojęzyczny, lecz język angielski jest
 najbardziej zaawansowany.
 
 %package devel
-Summary:	Festival developement enviroment
+Summary:	Festival developement environment
 Summary(pl.UTF-8):	Festival - środowidko rozwojowe
 Group:		Applications/Sound
 
 %description devel
-Festival developement enviroment.
+Festival developement environment.
 
 %description devel -l pl.UTF-8
 Festival - środowisko rozwojowe.
