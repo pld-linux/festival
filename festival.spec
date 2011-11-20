@@ -3,7 +3,7 @@ Summary:	The Festival speech sythesis system
 Summary(pl.UTF-8):	System syntezy mowy Festival
 Name:		festival
 Version:	1.4.4
-%define		rel	5
+%define		rel	6
 %define		_snap	20030803
 Release:	0.%{_snap}.%{rel}
 License:	BSD-like (except for festival.el, which is on GPL)
