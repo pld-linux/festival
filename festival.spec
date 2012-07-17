@@ -19,9 +19,10 @@ Source4:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_kallpc16
 Source5:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_rablpc16k.tar.gz
 # Source5-md5:	34cb2478f5b8fa1ed02f5cbb496c1dcd
 Patch0:		%{name}-config.patch
+Patch1:		%{name}-pulse.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
-BuildRequires:	speech_tools-devel >= 2.1
+BuildRequires:	speech_tools-devel >= 2.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %ifarch alpha
@@ -83,12 +84,16 @@ Pliki potrzebne do użycia głosu en1 z pakietu mbrola.
 %prep
 %setup -q -n %{name} -b1 -b2 -b3 -b4 -b5
 %patch0 -p1
+%patch1 -p1
+
+ln -s %{_libdir}/speech_tools/base_class src/modules/MultiSyn
+ln -s %{_libdir}/speech_tools/config/modules/pulse_audio.mak config/modules
 
 %build
 cp -f /usr/share/automake/config.* .
 %{__perl} -pi -e 's,^EST=.*,EST=%{_libdir}/speech_tools,' config/config.in
 %configure2_13
-%{__make} \
+%{__make} -j1 \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
 	ECHO_N='printf "%%s"' \
