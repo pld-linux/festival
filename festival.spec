@@ -89,6 +89,9 @@ Pliki potrzebne do użycia głosu en1 z pakietu mbrola.
 ln -s %{_libdir}/speech_tools/base_class src/modules/MultiSyn
 ln -s %{_libdir}/speech_tools/config/modules/pulse_audio.mak config/modules
 
+# cleanup backups after patching
+find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
+
 %build
 cp -f /usr/share/automake/config.* .
 %{__perl} -pi -e 's,^EST=.*,EST=%{_libdir}/speech_tools,' config/config.in
