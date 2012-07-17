@@ -2,26 +2,23 @@
 Summary:	The Festival speech sythesis system
 Summary(pl.UTF-8):	System syntezy mowy Festival
 Name:		festival
-Version:	1.4.4
-%define		rel	7
-%define		_snap	20030803
-Release:	0.%{_snap}.%{rel}
+Version:	2.1
+Release:	0.1
 License:	BSD-like (except for festival.el, which is on GPL)
 Group:		Applications/Sound
-#Source0:	http://www.cstr.ed.ac.uk/download/festival/%{version}/%{name}-%{version}-release.tar.gz
-Source0:	http://www.festvox.org/packed/festival/latest/festival-%{version}-current%{_snap}.tar.gz
-# Source0-md5:	ffaa7533b3f50791aabfbf1cee09ca85
-Source1:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us1.tar.gz
-# Source1-md5:	d0c3e727003e715a65daf01003101813
-Source2:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us2.tar.gz
-# Source2-md5:	fbcc8baacbff3aa2aaaf5a93701bb5e0
-Source3:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_us3.tar.gz
-# Source3-md5:	06dbfe2edaab6ffa31deeaf522e0c33e
-Source4:	http://www.cstr.ed.ac.uk/download/festival/%{version}/festvox_en1.tar.gz
-# Source4-md5:	66e3bc07751d7e31826185649c5ada5a
+Source0:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/%{name}-%{version}-release.tar.gz
+# Source0-md5:	c93eb3e389ed171ab9abd46afe8897a8
+Source1:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_cmu_us_awb_cg.tar.gz
+# Source1-md5:	2c14269587ad018ee93176bb44f4c38b
+Source2:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_cmu_us_rms_cg.tar.gz
+# Source2-md5:	a9514a9df32401774c074abec42ffb22
+Source3:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_cmu_us_slt_arctic_hts.tar.gz
+# Source3-md5:	a9b53441968f6bc612b85c04bbc4cf0f
+Source4:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_kallpc16k.tar.gz
+# Source4-md5:	3869af78f473b616601cac3fa83cc14e
+Source5:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_rablpc16k.tar.gz
+# Source5-md5:	34cb2478f5b8fa1ed02f5cbb496c1dcd
 Patch0:		%{name}-config.patch
-Patch1:		%{name}-asterisk.patch
-Patch2:		%{name}-gcc4.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
 BuildRequires:	speech_tools-devel
@@ -84,10 +81,8 @@ Files needed to use en1 voice from mbrola packages.
 Pliki potrzebne do użycia głosu en1 z pakietu mbrola.
 
 %prep
-%setup -q -n %{name} -b1 -b2 -b3 -b4
+%setup -q -n %{name} -b1 -b2 -b3 -b4 -b5
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.* .
