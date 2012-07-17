@@ -21,7 +21,7 @@ Source5:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/festvox_rablpc16
 Patch0:		%{name}-config.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
-BuildRequires:	speech_tools-devel
+BuildRequires:	speech_tools-devel >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %ifarch alpha
