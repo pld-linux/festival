@@ -206,6 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/lib
 %dir %{_datadir}/%{name}/lib/dicts
+%dir %{_datadir}/%{name}/lib/multisyn
 %dir %{_datadir}/%{name}/lib/voices
 %dir %{_datadir}/%{name}/lib/voices/english
 %dir %{_datadir}/%{name}/lib/etc
@@ -215,11 +216,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/lib/etc/email_filter
 %{_datadir}/%{name}/lib/*.scm
 %{_datadir}/%{name}/lib/Sable.v0_2.dtd
+%{_datadir}/%{name}/lib/Singing.v0_1.dtd
+%{_datadir}/%{name}/lib/VCLocalRules
 %{_datadir}/%{name}/lib/festival.el
 %{_datadir}/%{name}/lib/sable-latin.ent
 %{_datadir}/%{name}/lib/scfg_wsj_wp20.gram
 %{_datadir}/%{name}/lib/sec.*.ngrambin
 %{_datadir}/%{name}/lib/speech.properties
+%{_datadir}/%{name}/lib/multisyn/*.scm
 %{_datadir}/%{name}/examples
 
 %files devel
