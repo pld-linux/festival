@@ -23,6 +23,8 @@ Patch1:		%{name}-pulse.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
 BuildRequires:	speech_tools-devel >= 2.1-3
+Requires:	festival-voice
+Suggests:	festival-voice-english-slt-arctic-hts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %ifarch alpha
@@ -57,29 +59,98 @@ Festival developement environment.
 %description devel -l pl.UTF-8
 Festival - środowisko rozwojowe.
 
-%package voices-english-mbrola-us
-Summary:	Festival's files for voices us1, us2, us3
-Summary(pl.UTF-8):	Pliki Festival do głosów us1, us2, us3
+%package voice-english-kal-diphone
+Summary:	American English male speaker "Kevin" for Festival
 Group:		Applications/Sound
-Requires:	mbrola
+Requires:	%{name} = %{version}-%{release}
+Provides:	festival-voice
 
-%description voices-english-mbrola-us
-Files needed to use us1, us2, us3 voices from mbrola packages.
+%description voice-english-kal-diphone
+American English male speaker ("Kevin") for Festival.
 
-%description voices-english-mbrola-us -l pl.UTF-8
-Pliki potrzebne do użycia głosów us1, us2, us3 z pakietu mbrola.
+This voice provides an American English male voice using a residual
+excited LPC diphone synthesis method. It uses the CMU Lexicon
+pronunciations. Prosodic phrasing is provided by a statistically
+trained model using part of speech and local distribution of breaks.
+Intonation is provided by a CART tree predicting ToBI accents and an
+F0 contour generated from a model trained from natural speech. The
+duration model is also trained from data using a CART tree.
 
-%package voices-english-mbrola-en
-Summary:	Festival's files for voice en1
-Summary(pl.UTF-8):	Pliki Festival do głosu en1
+%package voice-english-rab-diphone
+Summary:	British RP English male speaker "Roger" for Festival
 Group:		Applications/Sound
-Requires:	mbrola
+Requires:	%{name} = %{version}-%{release}
+Provides:	festival-voice
 
-%description voices-english-mbrola-en
-Files needed to use en1 voice from mbrola packages.
+%description voice-english-rab-diphone
+British RP English male speaker ("Roger") for Festival.
 
-%description voices-english-mbrola-en -l pl.UTF-8
-Pliki potrzebne do użycia głosu en1 z pakietu mbrola.
+This voice provides a British RP English male voice using a residual
+excited LPC diphone synthesis method. It uses a modified Oxford
+Advanced Learners' Dictionary for pronunciations. Prosodic phrasing is
+provided by a statistically trained model using part of speech and
+local distribution of breaks. Intonation is provided by a CART tree
+predicting ToBI accents and an F0 contour generated from a model
+trained from natural speech. The duration model is also trained from
+data using a CART tree.
+
+%package voice-english-awb-cg
+Summary:	Scottish-accent US English male speaker "AWB" for Festival
+Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
+Provides:	festival-voice
+
+%description voice-english-awb-cg
+US English male speaker ("AWB") for Festival. AWB is a native Scottish
+English speaker, but the voice uses the US English front end.
+
+This is a HMM-based Speech Synthesis System (HTS) voice from the
+Nagoya Institute of Technology, trained using the CMU ARCTIC database.
+This voice is based on 1138 utterances spoken by a Scottish English
+male speaker. The speaker is very experienced in building synthetic
+voices and matched prompted US English, though his vowels are very
+different from US English vowels. Scottish English speakers will
+probably find synthesizers based on this voice strange. Unlike the
+other CMU_ARCTIC databases this was recorded in 16 bit 16KHz mono
+without EGG, on a Dell Laptop in a quiet office. The database was
+automatically labelled using CMU Sphinx using the FestVox labelling
+scripts. No hand correction has been made.
+
+%package voice-english-rms-cg
+Summary:	US English male speaker "RMS" for Festival
+Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
+Provides:	festival-voice
+
+%description voice-english-rms-cg
+US English male speaker ("RMS") voice for Festival.
+
+This is a HMM-based Speech Synthesis System (HTS) voice from the
+Nagoya Institute of Technology, trained using the CMU ARCTIC database.
+This voice is based on 1132 utterances spoken by a US English male
+speaker. The speaker is experienced in building synthetic voices. This
+was recorded at 16bit 32KHz, in a sound proof room, in stereo, one
+channel was the waveform, the other EGG. The database was
+automatically labelled using EHMM an HMM labeler that is included in
+the FestVox distribution. No hand correction has been made.
+
+%package voice-english-slt-arctic-hts
+Summary:	US English female speaker "SLT" for Festival
+Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
+Provides:	festival-voice
+
+%description voice-english-slt-arctic-hts
+US English female speaker ("SLT") voice for Festival.
+
+This is a HMM-based Speech Synthesis System (HTS) voice from the
+Nagoya Institute of Technology, trained using the CMU ARCTIC database.
+This voice is based on 1132 utterances spoken by a US English female
+speaker. The speaker is experienced in building synthetic voices. This
+was recorded at 16bit 32KHz, in a sound proof room, in stereo, one
+channel was the waveform, the other EGG. The database was
+automatically labelled using CMU Sphinx using the FestVox labelling
+scripts. No hand correction has been made.
 
 %prep
 %setup -q -n %{name} -b1 -b2 -b3 -b4 -b5
@@ -103,7 +174,7 @@ cp -f /usr/share/automake/config.* .
 	OPTIMISE_CCFLAGS="%{rpmcflags}" \
 	OPTIMISE_CXXFLAGS="%{rpmcflags}" \
 	OPTIMISE_LINK="%{rpmldflags}" \
-	REQUIRED_LIBDEPS= 
+	REQUIRED_LIBDEPS=
 # REQUIRED_LIBDPES is workaround not to need static speech_tools libraries
 
 %install
@@ -158,15 +229,32 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/config
 
-# no mbrola on amd64
-%ifarch %{ix86} ppc alpha sparc
-%files voices-english-mbrola-us
+%files voice-english-kal-diphone
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/lib/voices/english/us1_mbrola
-%{_datadir}/%{name}/lib/voices/english/us2_mbrola
-%{_datadir}/%{name}/lib/voices/english/us3_mbrola
+%dir %{_datadir}/%{name}/lib/voices
+%dir %{_datadir}/%{name}/lib/voices/english
+%{_datadir}/%{name}/lib/voices/english/kal_diphone
 
-%files voices-english-mbrola-en
+%files voice-english-rab-diphone
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/lib/voices/english/en1_mbrola
-%endif
+%dir %{_datadir}/%{name}/lib/voices
+%dir %{_datadir}/%{name}/lib/voices/english
+%{_datadir}/%{name}/lib/voices/english/rab_diphone
+
+%files voice-english-awb-cg
+%defattr(644,root,root,755)
+%dir %{_datadir}/%{name}/lib/voices
+%dir %{_datadir}/%{name}/lib/voices/us
+%{_datadir}/%{name}/lib/voices/us/cmu_us_awb_cg
+
+%files voice-english-rms-cg
+%defattr(644,root,root,755)
+%dir %{_datadir}/%{name}/lib/voices
+%dir %{_datadir}/%{name}/lib/voices/us
+%{_datadir}/%{name}/lib/voices/us/cmu_us_rms_cg
+
+%files voice-english-slt-arctic-hts
+%defattr(644,root,root,755)
+%dir %{_datadir}/%{name}/lib/voices
+%dir %{_datadir}/%{name}/lib/voices/us
+%{_datadir}/%{name}/lib/voices/us/cmu_us_slt_arctic_hts
