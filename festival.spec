@@ -2,19 +2,19 @@
 Summary:	The Festival speech sythesis system
 Summary(pl.UTF-8):	System syntezy mowy Festival
 Name:		festival
-Version:	2.4
-Release:	2
+Version:	2.5.0
+Release:	1
 License:	BSD-like (except for festival.el, which is on GPL)
 Group:		Applications/Sound
-Source0:	http://www.cstr.ed.ac.uk/downloads/festival/%{version}/%{name}-%{version}-release.tar.gz
-# Source0-md5:	49707d2f6744d5a67f81a96c36f7cb59
+Source0:	http://www.festvox.org/packed/festival/2.5/%{name}-%{version}-release.tar.gz
+# Source0-md5:	6cc3730fc5175f04d4d2f05e6bbab6b5
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-pulse.patch
 URL:		http://www.cstr.ed.ac.uk/projects/festival/
 BuildRequires:	automake
-BuildRequires:	speech_tools-devel >= 2.4
+BuildRequires:	speech_tools-devel >= 2.5
 Requires:	festival-voice
-Requires:	speech_tools >= 2.4
+Requires:	speech_tools >= 2.5
 Suggests:	festival-voice-english-slt-cg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ACKNOWLEDGMENTS COPYING NEWS README
+%doc ACKNOWLEDGMENTS COPYING NEWS README.md
 %attr(755,root,root) %{_bindir}/festival
 %attr(755,root,root) %{_bindir}/festival_client
 %attr(755,root,root) %{_bindir}/festival_server
